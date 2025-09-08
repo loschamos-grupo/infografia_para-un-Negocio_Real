@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Clean Services - Sistema de Gestión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --light: #f9f9f9;
+            --dark: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 20px 0 10px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-header i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .problem-list, .requirement-list {
+            list-style-type: none;
+        }
+        
+        .problem-list li, .requirement-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .problem-list li:before, .requirement-list li:before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+        }
+        
+        .entity {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .entity-attr {
+            font-size: 0.9rem;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        .relationship {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            background: #edf7ff;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        .relationship i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .highlight {
+            background-color: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, var(--secondary), #27ae60);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mary Clean Services</h1>
+            <p>Sistema de Gestión de Pedidos - Análisis de Requisitos</p>
+        </header>
+        
+        <section class="intro">
+            <p>Este documento presenta los requisitos y especificaciones para el sistema de gestión de pedidos de Mary Clean Services, enfocado en digitalizar procesos manuales, mejorar la comunicación con clientes y generar reportes para la toma de decisiones.</p>
+        </section>
+        
+        <h2>Problemas del Negocio</h2>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>Problemas Actuales</h3>
+            </div>
+            <ul class="problem-list">
+                <li>Gestión manual ineficiente con pedidos en papel propensos a errores</li>
+                <li>Falta de visibilidad del estado de pedidos, inventario e historial de clientes</li>
+                <li>Comunicación reactiva con clientes mediante llamadas telefónicas</li>
+                <li>Dificultad en facturación y control de pagos con procesos manuales</li>
+                <li>Análisis de negocio limitado por dificultad para generar reportes</li>
+            </ul>
+        </div>
+        
+        <h2>Requisitos Funcionales</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-users"></i>
+                    <h3>RF01 - Gestión de Clientes</h3>
+                </div>
+                <p>Crear, buscar, editar y visualizar el historial de clientes.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>RF02 - Gestión de Pedidos</h3>
+                </div>
+                <p>Registrar nuevos pedidos, agregar múltiples prendas y servicios, cambiar estados.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-store"></i>
+                    <h3>RF03 - Gestión de Sucursales</h3>
+                </div>
+                <p>Filtrar información por sucursal en un sistema centralizado.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>RF04 - Control de Pagos</h3>
+                </div>
+                <p>Registrar pagos (totales/parciales) y asociarlos a pedidos. Emitir comprobantes.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-bell"></i>
+                    <h3>RF05 - Notificaciones</h3>
+                </div>
+                <p>Enviar notificaciones automáticas por WhatsApp/SMS al cambiar estado de pedido.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-camera"></i>
+                    <h3>RF06 - Gestión de Fotos</h3>
+                </div>
+                <p>Adjuntar fotos de las prendas al momento de la recepción.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>RF07 - Generación de Reportes</h3>
+                </div>
+                <p>Generar reportes con filtros por fecha para análisis de negocio.</p>
+            </div>
+        </div>
+        
+        <h2>Requisitos No Funcionales</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-mouse-pointer"></i>
+                    <h3>Usabilidad</h3>
+                </div>
+                <p>Interfaz intuitiva y fácil de usar para empleados con posible resistencia a la tecnología.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Accesibilidad</h3>
+                </div>
+                <p>Debe poder usarse desde celular Android o tablet, ya que puede no haber computadoras.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Costo</h3>
+                </div>
+                <p>Solución de bajo costo o gratuita (open source) inicialmente, acorde al presupuesto limitado.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Conectividad</h3>
+                </div>
+                <p>Debe funcionar con internet inestable o tener modo offline que sincronice después.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Seguridad Básica</h3>
+                </div>
+                <p>Acceso con usuario y contraseña. Diferentes roles (admin, empleado_sucursal).</p>
+            </div>
+        </div>
+        
+        <h2>Entidades Principales</h2>
+        <div class="card">
+            <div class="entity">
+                <h3>Cliente <span class="entity-attr">(id_cliente, nombre, teléfono, dirección, email, fecha_registro)</span></h3>
+            </div>
+            
+            <div class="entity">
+                <h3>Sucursal <span class="entity-attr">(id_sucursal, dirección, teléfono, ciudad)</span></h3>
+            </div>
+            
+            <div class="entity">
+                <h3>Empleado <span class="entity-attr">(id_empleado, nombre, id_sucursal, rol, usuario, contraseña)</span></h3>
+            </div>
+            
+            <div class="entity">
+                <h3>Servicio <span class="entity-attr">(id_servicio, nombre, precio, tiempo_estimado)</span></h3>
+            </div>
+            
+            <div class="entity">
+                <h3>Pedido <span class="entity-attr">(id_pedido, fecha_creacion, id_cliente, id_sucursal, estado, total, anticipo, fecha_entrega_prometida, fecha_entrega_real)</span></h3>
+            </div>
+            
+            <div class="entity">
+                <h3>PedidoDetalle <span class="entity-attr">(id_detalle, id_pedido, id_servicio, descripcion_prenda, observaciones, ruta_foto)</span></h3>
+            </div>
+            
+            <div class="entity">
+                <h3>Pago <span class="entity-attr">(id_pago, id_pedido, monto, metodo_pago, fecha, numero_comprobante)</span></h3>
+            </div>
+        </div>
+        
+        <h2>Relaciones entre Entidades</h2>
+        <div class="card">
+            <div class="relationship">
+                <i class="fas fa-link"></i>
+                <p><strong>Cliente - Pedido:</strong> 1 Cliente → N Pedidos</p>
+            </div>
+            
+            <div class="relationship">
+                <i class="fas fa-link"></i>
+                <p><strong>Sucursal - Empleado:</strong> 1 Sucursal → N Empleados</p>
+            </div>
+            
+            <div class="relationship">
+                <i class="fas fa-link"></i>
+                <p><strong>Sucursal - Pedido:</strong> 1 Sucursal → N Pedidos</p>
+            </div>
+            
+            <div class="relationship">
+                <i class="fas fa-link"></i>
+                <p><strong>Pedido - PedidoDetalle:</strong> 1 Pedido → N Pedido_Detalles</p>
+            </div>
+            
+            <div class="relationship">
+                <i class="fas fa-link"></i>
+                <p><strong>Servicio - PedidoDetalle:</strong> 1 Servicio → N Pedido_Detalles</p>
+            </div>
+            
+            <div class="relationship">
+                <i class="fas fa-link"></i>
+                <p><strong>Pedido - Pago:</strong> 1 Pedido → N Pagos (pagos parciales)</p>
+            </div>
+        </div>
+        
+        <h2>Reportes Esenciales</h2>
+        <div class="card">
+            <ul class="requirement-list">
+                <li>Consultas en tiempo real de clientes y estado de pedidos</li>
+                <li>Reporte de caja con ingresos desglosados por método de pago</li>
+                <li>Reporte de pedidos pendientes con días de retraso</li>
+                <li>Reporte de productividad por sucursal</li>
+                <li>Reporte de servicios más populares</li>
+                <li>Reporte de clientes frecuentes para programas de fidelidad</li>
+            </ul>
+        </div>
+        
+        <div class="highlight">
+            <h3>Nota Importante</h3>
+            <p>El atributo <strong>ruta_foto</strong> en PedidoDetalle es crucial para evitar disputas con los clientes, permitiendo documentar el estado de las prendas al momento de la recepción.</p>
+        </div>
+        
+        <div class="conclusion">
+            <h2>Conclusión para el Desarrollo</h2>
+            <p>El sistema prioritario para Mary Clean Services es un Sistema de Gestión de Pedidos (SGP) centrado en:</p>
+            <ul class="requirement-list">
+                <li>Digitalizar el proceso de recepción y entrega</li>
+                <li>Mejorar la comunicación con el cliente vía WhatsApp</li>
+                <li>Controlar los pagos y la caja</li>
+                <li>Generar reportes básicos para la toma de decisiones</li>
+            </ul>
+            <p>Una solución inicial podría ser una aplicación web responsive que funcione en celulares, integrada con un API de WhatsApp, y que utilice una base de datos simple en la nube.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Mary Clean Services - Sistema de Gestión de Pedidos</p>
+        <p>Análisis de Requisitos | Propuesta de Solución</p>
+    </footer>
+</body>
+</html>
